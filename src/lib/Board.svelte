@@ -26,34 +26,21 @@
     </select>
 </div>
 
-<div id="wrapper">
-    <div id="board">
-        <div id="content">
-            {#each $game as c}
-                <Card val={c} {size} />
-            {/each}
-        </div>
-    </div>
+<div id="board">
+    {#each $game as c}
+        <Card val={c} {size} />
+    {/each}
 </div>
 
 <style>
-    #head {
-        margin: 2em 0;
-    }
-
-    #wrapper {
-        background-color: grey;
-    }
-
-    #content {
-        background-color: red;
-        margin:auto;
-    }
-
     #board {
+        display: grid;
+        grid-template-columns: repeat(6, 10vw);
+        grid-template-rows: repeat(6, 10vw);
+        grid-gap: 1vw;
+        padding: 1vw;
         background-color: aqua;
-        height: 80vh;
-        width: 80vh;
+        width: 65vw;
         margin: auto;
     }
 </style>

@@ -12,7 +12,7 @@
 </div>
 
 <style>
-    div {
+    /* div {
         color:goldenrod;
         display: inline-block;
         border: 1px solid goldenrod;
@@ -20,5 +20,9 @@
         padding: 1em;
         height: var(--s);
         margin: 0.1em;
+    } */
+    .card {
+        background-color: lightgreen;
+        color:black;
     }
 </style>
