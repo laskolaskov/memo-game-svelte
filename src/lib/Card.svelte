@@ -1,19 +1,16 @@
 <script lang="ts">
     export let val: number;
 
-    let isFlipped = false
-    let cardClass = "card"
+    let isFlipped = false;
+    let cardClass = "card";
 
     $: {
-        console.log(isFlipped, val)
-        if(isFlipped) {
-            cardClass = "card is-flipped"
+        if (isFlipped) {
+            cardClass = "card is-flipped";
         } else {
-            cardClass = "card"
+            cardClass = "card";
         }
     }
-
-
 </script>
 
 <div
