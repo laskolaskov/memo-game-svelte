@@ -11,6 +11,6 @@
 
 <div class={mainClass}>
     {#each $game as c}
-        <Card val={c} />
+        <Card card={c} />
     {/each}
 </div>

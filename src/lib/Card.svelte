@@ -1,26 +1,36 @@
 <script lang="ts">
-    export let val: number;
+    import { flipped, flip, type ICard } from "./stores";
+    export let card: ICard;
 
-    let isFlipped = false;
     let cardClass = "card";
 
     $: {
-        if (isFlipped) {
+        if (card.flipped) {
             cardClass = "card is-flipped";
         } else {
             cardClass = "card";
         }
     }
+
+    const clickHandler = () => {
+        if ($flipped >= 2 || card.flipped === true) {
+            //do nothing
+            return;
+        }
+        //flip the card
+        card.flipped = true;
+        flip(card.index);
+    };
 </script>
 
 <div
     class="bg-orange-500 m-auto portrait:w-12vw landscape:w-12vh portrait:h-12vw landscape:h-12vh flex flex-col justify-center"
-    on:click={() => (isFlipped = !isFlipped)}
+    on:click={() => clickHandler()}
     on:keypress={() => null}
 >
     <div class={cardClass}>
         <div class="card__face card__face--front">(.)(.)</div>
-        <div class="card__face card__face--back">{val}</div>
+        <div class="card__face card__face--back">{card.value}</div>
     </div>
 </div>
 
