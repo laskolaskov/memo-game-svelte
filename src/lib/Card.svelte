@@ -3,6 +3,7 @@
     export let card: ICard;
 
     let cardClass = "card";
+    let mainClass = "bg-orange-500 h-28 flex flex-col justify-center"
 
     $: {
         if (card.flipped) {
@@ -24,7 +25,7 @@
 </script>
 
 <div
-    class="bg-orange-500 m-auto portrait:w-12vw landscape:w-12vh portrait:h-12vw landscape:h-12vh flex flex-col justify-center"
+    class={mainClass}
     on:click={() => clickHandler()}
     on:keypress={() => null}
 >

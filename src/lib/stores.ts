@@ -8,29 +8,51 @@ export interface ICard {
 
 let flippedCards: Array<number> = []
 const size = 6
-const g = Array(size * size).fill(0).map((n, i) => {
-    return {
-        value: i + 1,
-        flipped: false,
-        index: i
-    }
-})
+const g = createGame(size)
+console.log('game :: ', g)
 
 export const flipped = writable(flippedCards.length)
 
+function createGame(size: number) {
+    //first half of cards
+    const a = Array((size * size) / 2).fill(0).map((n, i) => i + 1)
+    //merge and shuffle
+    const base = [...a, ...a].sort(() => 0.5 - Math.random())
+    //map the values to card objects and return
+    return base.map((n, i) => {
+        return {
+            value: n,
+            flipped: false,
+            index: i
+        }
+    })
+}
+
 function checkFlipped(flipped: Writable<number>) {
-    setTimeout(() => {
-        flipBack()
-    }, 2000)
+    if(g[flippedCards[0]].value === g[flippedCards[1]].value) {
+        //TODO: process score
+        //smaller timeout, reseting the flipped cards counter, to not be able to immediately click something by accident - maybe better UX ?
+        setTimeout(() => {
+            resetFlipped()
+        }, 200)
+    } else {
+        setTimeout(() => {
+            flipBack()
+            resetFlipped()
+        }, 2000)
+    }
 }
 
 function flipBack() {
     flippedCards.forEach(i => {
         g[i].flipped = false
     })
+    game.set(g)
+}
+
+function resetFlipped() {
     flippedCards = []
     flipped.set(flippedCards.length)
-    game.set(g)
 }
 
 //tracker for flipped/clicked cards
