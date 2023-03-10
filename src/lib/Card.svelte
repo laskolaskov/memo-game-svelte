@@ -1,15 +1,15 @@
 <script lang="ts">
-    import { flipped, flip, type ICard } from "./stores";
-    export let card: ICard;
+    import { flipped, flip, type ICard } from "./stores"
+    export let card: ICard
 
-    let cardClass = "card";
+    let cardClass = "card"
     let mainClass = "bg-orange-500 h-28 flex flex-col justify-center"
 
     $: {
         if (card.flipped) {
-            cardClass = "card is-flipped";
+            cardClass = "card is-flipped"
         } else {
-            cardClass = "card";
+            cardClass = "card"
         }
     }
 

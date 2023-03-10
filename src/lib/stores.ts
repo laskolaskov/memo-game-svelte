@@ -1,4 +1,5 @@
 import { writable, derived, get, type Writable } from "svelte/store"
+import { createGame } from "../functions";
 
 export interface ICard {
     value: number;
@@ -9,29 +10,23 @@ export interface ICard {
 let flippedCards: Array<number> = []
 const size = 6
 const g = createGame(size)
-console.log('game :: ', g)
+//array with card objects
+export const game = writable(g)
 
 export const flipped = writable(flippedCards.length)
-
-function createGame(size: number) {
-    //first half of cards
-    const a = Array((size * size) / 2).fill(0).map((n, i) => i + 1)
-    //merge and shuffle
-    const base = [...a, ...a].sort(() => 0.5 - Math.random())
-    //map the values to card objects and return
-    return base.map((n, i) => {
-        return {
-            value: n,
-            flipped: false,
-            index: i
-        }
-    })
-}
+export const p1score = writable(0)
+export const p2score = writable(0)
+export const isPlayerOneTurn = writable(true)
 
 function checkFlipped(flipped: Writable<number>) {
-    if(g[flippedCards[0]].value === g[flippedCards[1]].value) {
-        //TODO: process score
-        //smaller timeout, reseting the flipped cards counter, to not be able to immediately click something by accident - maybe better UX ?
+    if (g[flippedCards[0]].value === g[flippedCards[1]].value) {
+        //update player score
+        if (get(isPlayerOneTurn)) {
+            p1score.update(v => v + 1)
+        } else {
+            p2score.update(v => v + 1)
+        }
+        //smaller timeout, reseting the flipped cards counter, to not be able to immediately click something by accident - better UX
         setTimeout(() => {
             resetFlipped()
         }, 200)
@@ -39,6 +34,8 @@ function checkFlipped(flipped: Writable<number>) {
         setTimeout(() => {
             flipBack()
             resetFlipped()
+            //switch player
+            isPlayerOneTurn.update(v => !v)
         }, 2000)
     }
 }
@@ -61,8 +58,7 @@ flipped.subscribe(v => {
         checkFlipped(flipped)
     }
 })
-//array with card objects
-export const game = writable(g)
+
 
 export function flip(index: number) {
     flippedCards.push(index)

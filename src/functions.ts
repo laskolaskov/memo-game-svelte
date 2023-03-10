@@ -1,3 +1,18 @@
+export function createGame(size: number) {
+    //first half of cards
+    const a = Array((size * size) / 2).fill(0).map((n, i) => i + 1)
+    //merge and shuffle
+    const base = [...a, ...a].sort(() => 0.5 - Math.random())
+    //map the values to card objects and return
+    return base.map((n, i) => {
+        return {
+            value: n,
+            flipped: false,
+            index: i
+        }
+    })
+}
+
 export function getViewportSize() {
     const vw = Math.max(
         document.documentElement.clientWidth || 0,
@@ -53,7 +68,7 @@ export function getDimensions(size: number) {
                 s.height = "10vh";
             }
             break;
-    
+
         default:
             if (viewportSize.height > viewportSize.width) {
                 //portrait
@@ -69,7 +84,7 @@ export function getDimensions(size: number) {
             break;
     }
 
-    
+
 
     return s
 }
