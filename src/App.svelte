@@ -2,7 +2,7 @@
     import Board from "./lib/Board.svelte";
 </script>
 
-<main class="bg-gray-400">
+<main>
     <Board />
 </main>
 
