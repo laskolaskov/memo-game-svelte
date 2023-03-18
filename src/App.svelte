@@ -4,7 +4,7 @@
     import Board from "./lib/Board.svelte";
 </script>
 
-<main class="bg-slate-300 h-screen">
+<main class="md:w-1/2 md:mx-auto">
     <Score />
     <Board />
     <Footer />
