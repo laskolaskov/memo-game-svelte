@@ -5,7 +5,7 @@
     /**
      * tailwind css
      */
-    let mainClass = "h-28 text-3xl"
+    let mainClass = "h-20 text-2xl"
 
     let mainCardClass = "[transform-style:preserve-3d] relative w-full h-full cursor-pointer origin-right transition-transform duration-1000"
     let isFlippedClass = "[transform:translateX(-100%)_rotateY(-180deg)]"

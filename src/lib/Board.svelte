@@ -3,7 +3,7 @@
     import Card from "./Card.svelte";
 </script>
 
-<div class="p-2 grid grid-cols-6 gap-2">
+<div class="p-1 grid grid-cols-6 gap-1">
     {#each $game as c}
         <Card card={c} />
     {/each}

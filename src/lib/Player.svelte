@@ -25,7 +25,7 @@
     });
 </script>
 
-<div class="w-1/2 h-full float-left p-2">
+<div class="w-1/2 h-full float-left p-1">
     <div class={$mainClass}>
         Player {isPlayerOne ? 1 : 2} : {score}
     </div>
