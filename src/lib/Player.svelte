@@ -1,6 +1,6 @@
 <script lang="ts">
     import { derived } from "svelte/store";
-    import { isPlayerOneTurn } from "./stores";
+    import { isPlayerOneTurn, p1name, p2name } from "./stores";
 
     export let score: number;
     export let isPlayerOne: boolean;
@@ -27,6 +27,6 @@
 
 <div class="w-1/2 h-full float-left p-1">
     <div class={$mainClass}>
-        Player {isPlayerOne ? 1 : 2} : {score}
+        {isPlayerOne ? $p1name : $p2name} : {score}
     </div>
 </div>
